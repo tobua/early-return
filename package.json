@@ -1,0 +1,57 @@
+{
+  "name": "early-return",
+  "description": "Helper to facilitate early returns across function stack in JavaScript.",
+  "version": "0.0.0-development",
+  "repository": "github:tobua/early-return",
+  "license": "MIT",
+  "author": "Matthias Giger",
+  "scripts": {
+    "check": "biome check --write .",
+    "types": "tsc"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.1.11",
+    "typescript": "^5.6.3",
+    "zero-configuration": "^0.17.5"
+  },
+  "peerDependencies": {
+    "typescript": ">= 5"
+  },
+  "trustedDependencies": [
+    "zero-configuration"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "*.ts"
+  ],
+  "publishConfig": {
+    "provenance": false
+  },
+  "configuration": {
+    "gitignore": "recommended",
+    "vscode": "biome",
+    "typescript": {
+      "extends": "plugin",
+      "files": [
+        "index.ts"
+      ]
+    },
+    "biome": {
+      "extends": "recommended",
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          },
+          "complexity": {
+            "noBannedTypes": "off"
+          }
+        }
+      }
+    }
+  }
+}
