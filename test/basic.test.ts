@@ -45,3 +45,16 @@ test('Works on nested functions through the call stack.', () => {
   expect(value).toBe('success')
   expect(count).toBe(2)
 })
+
+test('Regular return values are also considered.', () => {
+  let count = 0
+  const value = earlyReturn(() => {
+    count += 1
+    early('skip', false)
+    count += 1
+    return count
+  })
+
+  expect(value).toBe(2)
+  expect(count).toBe(2)
+})

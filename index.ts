@@ -11,7 +11,7 @@ export function earlyReturn(method: Function) {
   result = undefined
 
   try {
-    method()
+    result = method()
   } catch (_error) {
     // TODO forward otherwise thrown errors.
   }
