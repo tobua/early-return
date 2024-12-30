@@ -1,9 +1,11 @@
 let result: any
 
+const errorMessage = 'early-return'
+
 export const early = (value: any, condition?: boolean) => {
   if (condition || typeof condition === 'undefined') {
     result = value
-    throw new Error('early-return')
+    throw new Error(errorMessage)
   }
 }
 
@@ -12,8 +14,10 @@ export function earlyReturn(method: Function) {
 
   try {
     result = method()
-  } catch (_error) {
-    // TODO forward otherwise thrown errors.
+  } catch (_error: any) {
+    if (_error.message !== errorMessage) {
+      throw new Error(_error)
+    }
   }
 
   const value = result
