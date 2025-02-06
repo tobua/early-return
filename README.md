@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/tobua/early-return/raw/main/logo.png" alt="early-return" width="30%">
+</p>
+
 # early-return
 
 Helper to facilitate early returns across function stack in JavaScript.

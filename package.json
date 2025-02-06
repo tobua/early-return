@@ -6,14 +6,14 @@
   "license": "MIT",
   "author": "Matthias Giger",
   "scripts": {
-    "check": "biome check --write .",
-    "types": "tsc"
+    "check": "biome check --write . && biome check --write --config-path=test ./test/*",
+    "types": "tsc && tsc --project ./test/tsconfig.json"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@types/bun": "^1.1.14",
-    "typescript": "^5.7.2",
-    "zero-configuration": "^0.17.6"
+    "@types/bun": "^1.2.2",
+    "typescript": "^5.7.3",
+    "zero-configuration": "^0.18.0"
   },
   "peerDependencies": {
     "typescript": ">= 5"
@@ -29,29 +29,45 @@
     "*.ts"
   ],
   "publishConfig": {
-    "provenance": false
+    "provenance": true
   },
   "configuration": {
     "gitignore": "recommended",
     "vscode": "biome",
-    "typescript": {
-      "extends": "plugin",
-      "files": [
-        "index.ts"
-      ]
-    },
-    "biome": {
-      "extends": "recommended",
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noExplicitAny": "off"
-          },
-          "complexity": {
-            "noBannedTypes": "off"
+    "license": "MIT",
+    "biome": [
+      {
+        "extends": "recommended",
+        "linter": {
+          "rules": {
+            "suspicious": {
+              "noExplicitAny": "off"
+            },
+            "complexity": {
+              "noBannedTypes": "off"
+            }
           }
         }
+      },
+      {
+        "folder": "test",
+        "extends": "test"
       }
-    }
+    ],
+    "typescript": [
+      {
+        "extends": "plugin",
+        "files": [
+          "index.ts"
+        ]
+      },
+      {
+        "extends": "plugin",
+        "folder": "test",
+        "compilerOptions": {
+          "strict": false
+        }
+      }
+    ]
   }
 }
